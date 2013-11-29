@@ -1,7 +1,9 @@
 #include <stdio.h>
+#include<stdlib.h>
+
 #define INITIAL_SIZE 10   /* maximum input line size */
 
-int getline(char line[ ]);
+int getline();
 void copy(char to[ ], char from[ ]);
 
 /* print the longest input line */
@@ -12,38 +14,40 @@ main(){
   char longest[INITIAL_SIZE];   /* longest lines saved here */
 
   max = 0 ; 
-  while ((len = getline(line)) > 0)
+  while ((len = getline()) > 0)
     if(len > max){
         max = len ;
-        copy(longest,line);
+	//    copy(longest,line);
     }
-  if(max > 0) /* there was a line */
-     printf ("%s\n",longest);
+  //  if(max > 0) /* there was a line */
+	// printf ("%s\n",longest);
   return 0;
 }
 
-/* getline: read a line into s, return length */
-int getline(char s[ ]){
+/* getline: read a line into s, return length 
+   set one char array used to store the user input
+   if the user input exceed the max length of the char array
+   copy the chars into larger array, then use the larger array
+   store the user input 
+*/
+int getline(){
   int c , i;
-  int size, step = 20;
-  size = INITIAL_SIZE;
+  size_t size = 10;
+  int step = 5;
+  char *str;
+  str = realloc(NULL,sizeof(char)*size); // size is start size
   for(i=0; (c = getchar()) != EOF && c != '\n' ; ++i){
-    s[i] = c ;
+    str[i] = c ;
     if ( i+1 == size ){
-      size = size + step ;
-      char newChars[size];  
-      int cnt;
-      while( cnt++ < i){
-	newChars[cnt] = s[cnt];	  
-      }
-      s = newChars;
+      str = realloc(str,sizeof(char)*(size+=step)) ;
     }
   }
   if ( c == '\n'){
-    s[i] = c ;
+    str[i] = c ;
     ++i;
   }
-  s[i] = '\0';
+  str[i] = '\0';
+  printf ("in final str is : %s\n",str);
   return i;
 }
 
