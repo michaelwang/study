@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Demo</title>
+    <style>
+      a.test {
+         font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="http://jquery.com/">jQuery</a>
+    <script src="jquery-1.11.2.js"></script>
+    <script>
+      $( document ).ready(function() {
+        $( "a" ).addClass( "test" );
+        $( "a" ).click(function( event ) {
+           alert( "The link will no longer take you to jquery.com" );
+           $( "a" ).removeClass( "test" );
+           $( this ).hide( "slow" );
+           console.log( "You clicked a paragraph!" );
+           event.preventDefault();
+        });
+        $.get( "test.html", function() {
+           myCallBack( param1, param2 );
+        });
+        function myCallBack(param1,param2){
+            alert("in myCallBack");
+        }
+      });
+    </script>
+  </body>
+  </html>

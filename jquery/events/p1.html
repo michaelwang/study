@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Demo</title>
+    <style>
+      a.test {
+         font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="http://jquery.com/">jQuery</a>
+    <input type="text" name="firstname">
+    <script src="../jquery-1.11.2.js"></script>
+    <script>
+      $( document ).ready(function() {
+        $( "input" ).on(
+          "click change",
+          function() {
+            console.log("An input was clicked or changed.");
+          }
+        );
+      });
+    </script>
+  </body>
+  </html>
