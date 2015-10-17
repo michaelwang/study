@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Demo</title>
+  </head>
+  <body>
+    <div style="display:none"> p1 </div>
+    <div> p2 </div>
+    <div> p3 </div>
+    <p> this is test paragraph </p>
+    <script src="../jquery-2.1.3.js"></script>
+    <script>
+      $( document ).ready(function() {
+//        $("p").hide("slow");  //fast
+ //      $("p").fadeOut(1500);
+        //        $("p").slideUp(1500);
+        $("p").toggle();
+        $("p").toggle();
+        $("div.hidden").show();
+      });
+    </script>
+  </body>
+  </html>

@@ -1,0 +1,22 @@
+<div ms-controller="index">
+
+    <table class="table">
+        <tr>
+            <th>城市</th>
+            <th>名称</th>
+            <th>地址</th>
+            <th>时间</th>
+        </tr>
+        <tr ms-repeat="items">
+            <td>{{el.city}}</td>
+            <td>
+                <a href="/?key={{el.key}}">
+                    {{el.name}}
+                </a>
+            </td>
+            <td>{{el.address}}</td>
+            <td>{{el.startTime}}</td>
+        </tr>
+    </table>
+    <div ms-widget="pager pagination paginationOpt"></div>
+</div>

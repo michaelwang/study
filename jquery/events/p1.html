@@ -11,6 +11,15 @@
   </head>
   <body>
     <a href="http://jquery.com/">jQuery</a>
+    <p> Test </p>
+    <div>
+      <ul id="list">
+        <li><a href="#1">Item 1</a> </li>
+        <li><a href="#2">Item 2</a> </li>
+        <li><a href="#3">Item 3</a> </li>
+        <li><a href="http://aa.com">Item 4</a> </li>
+      </ul>
+    </div>
     <input type="text" name="firstname">
     <script src="../jquery-1.11.2.js"></script>
     <script>
@@ -21,7 +30,44 @@
             console.log("An input was clicked or changed.");
           }
         );
+        $( "p" ).on({
+          "click" : function(){ console.log("clicked!"); },
+          "mouseover" : function() { console.log("hovered!"); }
+        });
+        var foo = function() { console.log("foo");  };
+        var bar = function() { console.log("bar");  };
+        $( "p" ).on("click", foo).on("click", bar);
+        $( "p" ).off("click",foo);
       });
+
+      $( "p" ).one("click",firstClick);
+
+     function firstClick(){
+       console.log("You just clicked this for the first time");
+       $(this).click(function(){
+          console.log("You have clicked this before!");
+       });
+     }
+
+     // The hover helper function
+    /**
+     $( "li" ).hover(
+         function() {
+             console.log("mouseenter");
+         },function() {
+            console.log("mouseleave");
+         }
+     );
+      **/
+     $( "#list" ).on( "click", "a", function( event ){
+       event.preventDefault();
+       console.log( $(this).text() );
+       var elem = $(this);
+       if (elem.is( "[href^='http']")){
+           elem.attr( "target","_blank");
+       }
+     });
+     $( "#list" ).append( "<li><a href='http://newdomain.com'>Item #5</a></li>" );
     </script>
   </body>
   </html>
